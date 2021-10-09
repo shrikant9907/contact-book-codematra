@@ -22,31 +22,19 @@ include_once 'functions.php';
  <link type="text/css" href="css/cm-style.css" rel="stylesheet" />
 
 </head>
-<body>
+<body class="bg-light">
 
-  <header class="bg-light text-dark mb-5 custom-header"> 
+  <header class="bg-white text-dark mb-4 shadow-sm admin-header"> 
     <div class="container">
       <div class="row">
           <div class="col-12">
-            <nav class="navbar navbar-expand-lg py-3">
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav text-center w-100 text-uppercase">
-                  <li class="nav-item active">
-                    <a class="nav-link text-dark" href="index.php">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-dark" href="contacts.php">Contact List</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-dark" href="add-contact.php">Add New Contact</a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
+            <form class="d-flex py-3">
+              <input class="form-control w-25 me-2" type="search" placeholder="Search by name" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
           </div>
       </div>
     </div>
   </header>  
+
+  <?php include_once('sidebar.php'); ?>
