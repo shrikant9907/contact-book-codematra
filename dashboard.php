@@ -5,7 +5,14 @@
       <div class="card text-center mb-5 border-success shadow">
         <h5 class="card-header bg-success text-white fs-4">Total Contacts</h5>
         <div class="card-body">
-          <p class="card-text fs-1 text-success">1542</p>
+          <?php $contacts = get_contacts(); 
+          if ($contacts)  {
+            $count = count($contacts);
+          } else {
+            $count = 0;
+          }
+          ?>
+          <p class="card-text fs-1 text-success"><?php echo $count; ?></p>
           <a href="contacts.php" class="btn btn-primary btn-success">Check List</a>
         </div>
       </div>

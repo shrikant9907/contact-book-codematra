@@ -1,8 +1,14 @@
-body {
-  font-family: "Roboto";
-  padding-left: 280px;
+* {
+  outline: unset !important;
 }
 
+body {
+  font-family: "Roboto";
+}
+ 
+body.pleft-280 {
+  padding-left: 280px !important;
+}
 
 .admin-sidebar {
   width: 280px;

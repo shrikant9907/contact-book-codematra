@@ -17,15 +17,11 @@ function create_contact_table() {
   if(!$result) {
     $sql = "CREATE TABLE contacts (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    registration_id VARCHAR(30) NOT NULL, 
     name VARCHAR(30) NOT NULL,
     email VARCHAR(50),
     phone VARCHAR(50),
     address VARCHAR(1000),
-    password VARCHAR(50),
-    status VARCHAR(50),
-    activation_key VARCHAR(50), 
-    reg_date TIMESTAMP 
+    timestamp TIMESTAMP 
     )";
 
     mysqli_query($connection, $sql);   
@@ -56,12 +52,35 @@ function get_contacts() {
 }
 
 /*
+ * Search Contacts Information | Site  https://codematra.com/
+ */
+function search_contacts($s) {
+  global $connection;  
+  $rows = array();
+  
+  $sql = "SELECT * FROM contacts WHERE name LIKE '$s%'";
+  $result = mysqli_query($connection, $sql); 
+  
+  if($result) {
+    $num_rows = mysqli_num_rows($result);
+    if($num_rows>0) {
+      for($r=1;$r<=$num_rows;$r++) {
+        $row = mysqli_fetch_assoc($result);
+        $rows[] = $row;
+      }
+    }
+  }
+  
+  return $rows; 
+}
+
+/*
  * Get Contact By ID | Site  https://codematra.com/
  */
-function get_contact_by_id($contact_id){
+function get_contact_by_id($cid){
   global $connection; 
  
-  $sql = "SELECT name, email, phone, address FROM contacts WHERE id='$contact_id'";  
+  $sql = "SELECT name, email, phone, address FROM contacts WHERE id='$cid'";  
   $result = mysqli_query($connection, $sql); 
   
   if($result) {
@@ -74,11 +93,11 @@ function get_contact_by_id($contact_id){
 /*
  * Delete Contact | Site  https://codematra.com/
  */
-function delete_contact($contact_id) {
+function delete_contact($cid) {
   global $connection; 
   $output = 0; 
-  if($contact_id) {
-    $sql = "DELETE FROM contacts WHERE id='$contact_id'";       
+  if($cid) {
+    $sql = "DELETE FROM contacts WHERE id='$cid'";       
     $result = mysqli_query($connection, $sql);
     
     if($result) {
